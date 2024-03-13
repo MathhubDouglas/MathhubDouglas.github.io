@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>2025考研倒计时</title>
+		<!-- 导入 jQuery 库 -->
+		<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="./css/wnl.css">
+		<style>
+			/* 样式表 */
+			.underway {
+				text-align: center;
+				background: #FDF7F5;
+				margin: 1.6rem auto;
+				width: 244px;
+				height: 82px;
+				border: 8px solid rgba(251, 223, 198, 0.4);
+				border-radius: 46px;
+			}
+			.underway p {
+				font-size: 28px;
+				font-family: Microsoft YaHei;
+				font-weight: bold;
+				color: #F7B170;
+				line-height: 64px;
+			}
+			.showH {
+				height: 0px;
+				overflow: hidden;
+			}
+		</style>
+		<!-- JavaScript 脚本 -->
+		<script type="text/javascript">
+			// 页面加载后执行
+			$(function() {
+				timer = setInterval(getRTime, 1000);
+			});
+			// 获取剩余时间函数
+			function getRTime() {
+				// 设置截止时间
+				var EndTime = new Date("2024/12/21 00:00:00");
+				var NowTime = new Date();
+				var t = EndTime.getTime() - NowTime.getTime();
+				if (t > 0) {
+					// 计算剩余时间
+					var d = Math.floor(t / 1000 / 60 / 60 / 24);
+					var h = Math.floor(t / 1000 / 60 / 60 % 24);
+					var m = Math.floor(t / 1000 / 60 % 60);
+					var s = Math.floor(t / 1000 % 60);
+					// 显示倒计时
+					$('#CountMsg').show();
+					document.getElementById("t_d").innerHTML = d;
+					document.getElementById("t_h").innerHTML = h;
+					document.getElementById("t_m").innerHTML = m;
+					document.getElementById("t_s").innerHTML = s;
+				} else {
+					// 清除定时器
+					clearInterval(timer);
+				}
+			}
+			// 计算两个日期之间的天数差函数
+			function diffBetweenTwoDays(datatime) {
+				var endTime = new Date(datatime).getTime() / 1000 - parseInt(new Date().getTime() / 1000);
+				var timeDay = Math.ceil(endTime / 60 / 60 / 24);
+				document.writeln("(还有" + timeDay + "天)");
+			}
+		</script>
+		<script>
+		    // 禁止选择文本
+		    document.onselectstart = function() {
+		        return false;
+		    };
+		    // 禁止右键菜单
+		    window.oncontextmenu = function() {
+		        return false;
+		    };
+		    // 禁止 F12
+		    window.onkeydown = window.onkeyup = window.onkeypress = function(event) {
+		        if (event.code === 'F12') {
+		            window.event.returnValue = false;
+		            return false;
+		        }
+		    };
+		</script>
+
+	</head>
+	<body>
+		<!-- 内容部分 -->
+		<div class="center">
+			<!-- 倒计时部分 -->
+			<div class="time2 timeActive">
+				<h1>2025年考研倒计时</h1>
+				<!-- 考试信息 -->
+				<h4>2025年全国硕士研究生初试时间：<br>12月21日至22日（考试时间超过3小时或有使用画板等特殊要求的少数考试科目安排在12月23日）<br>具体考试时间以官方公布为准。</h4>
+				<!-- 倒计时标题 -->
+				<h4>目前距离2025年考研倒计时还有</h4>
+				<!-- 倒计时显示区域 -->
+				<div id="CountMsg" class="HotDate" style="display: none;">
+					<div><span id="t_d">00</span></div>
+					<p>天</p>
+					<div><span id="t_h">00</span></div>
+					<p>时</p>
+					<div><span id="t_m">00</span></div>
+					<p>分</p>
+					<div><span id="t_s">00</span></div>
+					<p>秒</p>
+				</div>
+				<!-- 进行中提示 -->
+				<div class="bunderway">
+					<div class="underway">
+						<p>进行中</p>
+					</div>
+				</div>
+				<!-- 祝福语 -->
+				<div class="djs_detail_zhufu">
+					<span>“</span>
+					<p style="text-align: left;" id="biaoyu_digest"></p>
+					<span>”</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
